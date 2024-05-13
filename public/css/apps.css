@@ -1,0 +1,14 @@
+body{
+     /* background-image: url('/images/bg-nikken.png');
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: bottom; */
+}
+.nvar-panel{
+    background-color: #333d46 !important;
+}
+.bg-general{
+    /* background-image: url('/images/bg-nikken.png'); */
+    background-size: cover;
+    background-position: bottom;
+}

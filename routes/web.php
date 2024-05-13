@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PanelController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +19,10 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
+
+
+Route::get('/panel', [PanelController::class, 'index'])->name('index.panel');
+
