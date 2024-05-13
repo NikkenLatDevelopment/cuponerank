@@ -16,7 +16,7 @@
 
     <div class="w-100 bg-secondary">
         <div class="container bg-light">
-            <div class="row py-5">
+            <div class="row py-5 px-5">
 
                 <form>
                     <div class="mb-3">
@@ -30,34 +30,22 @@
 
         </div>
         <div class="container bg-light">
-            <div class="row py-2">
+            <div class="row py-2 px-5">
                 <table class="table">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">First</th>                        
+                        <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                            <th scope="row">1</th>
+                            <td>Mark</td>                        
+                            <td>@mdo</td>
                         </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 
