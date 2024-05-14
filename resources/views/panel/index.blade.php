@@ -74,16 +74,73 @@
                 if (response.data.success) {
 
                     response.data.data.forEach(function(item) {
-                    var fila = `<tr>
-                                    <th scope="row">${item.codigoCupon}</th>
-                                    <td>${item.email}</td>
-                                    <td><button type="button" class="btn btn-primary">Activar</button></td>
-                                </tr>`;
-                    $('.table tbody').append(fila);
-                });
+                        var fila = `<tr>
+                                        <th scope="row">${item.codigoCupon}</th>
+                                        <td>${item.email}</td>
+                                        <td><button type="button" class="btn btn-primary">Activar</button></td>
+                                    </tr>`;
+                        $('.table tbody').append(fila);
+                    });
 
                                 
                 }else{
+
+                    // const inputOptions = new Promise((resolve) => {
+                    //     setTimeout(() => {
+                    //     resolve({
+                    //         "Si": "Si",
+                    //         "No": "No"            
+                    //     });
+                    //     }, 1000);
+                    // });
+
+                    // Swal.fire({
+                    //     title: "<strong>Atención</strong>",
+                    //     icon: "question",
+                    //     html: "¿Ya realizó el proceso de registro ante la Dirección General Aduanas (SIGARD)?",
+                    //     input: "radio",
+                    //     inputOptions,
+                    //     showCloseButton: false,
+                    //     showCancelButton: false,
+                    //     focusConfirm: false,
+                    //     confirmButtonText: 'Continuar',
+                    //     confirmButtonAriaLabel: "Thumbs up, great!",
+                    //     allowOutsideClick: false,
+                    //     allowEscapeKey: false,
+                    //     allowEnterKey: false,
+                    //     inputValidator: (value) => {
+                    //         if (!value) {
+                    //         return "¡Necesitas seleccionar una opción!";
+                    //         }
+                    //     }
+                    // }).then((result) => {
+                    //     // El resultado contendrá el valor seleccionado por el usuario
+                    //     if (result.isConfirmed) {
+                    //         const selectedOption = result.value;
+                    //         //console.log("El usuario seleccionó:", selectedOption);
+                    //         if(selectedOption == "No"){
+
+                    //             var nuevaVentana = window.open("https://www.aduanas.gob.do/de-interes/iframes-consultas/registro-courier/", "_blank", "width=500,height=500");
+                    //             //$(".alert-sigard").removeClass("d-none");
+                    //             $("#modalSIGARD").modal("show");
+
+                    //             // Verificar si la ventana secundaria se cierra cada segundo
+                    //             var interval = setInterval(function() {
+                    //                 if (nuevaVentana.closed) {
+                    //                     ventanaSecundariaCerrada();
+                    //                     clearInterval(interval); // Detener el temporizador cuando la ventana se cierra
+                    //                 }
+                    //             }, 1000);
+
+                    //         }else{
+                    //             $("#sigard1").prop('checked', true);
+                    //             $("#sigard1").attr("disabled","true");
+                    //             $("#sigard2").attr("disabled","true");
+                    //         }            
+                    //         // Aquí puedes realizar las acciones necesarias con la opción seleccionada
+                    //     }
+                    // });
+    
 
                 }
                                 
