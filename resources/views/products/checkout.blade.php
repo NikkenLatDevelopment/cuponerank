@@ -12,9 +12,13 @@
         @if(count($products) > 0)
             <ul>
                 @foreach($products as $product)
-                    <li>
-                        {{ $product->name }} - {{ $product->quantity }} unidades - {{ $product->description }}
-                    </li>
+                <div class="product">
+        <img src="{{ $product->detail_image ? asset('https://storage.googleapis.com/tv-store/Products/images/'.$product->detail_image) : asset('path/to/default-image.jpg') }}" alt="Imagen de {{ $product->name }}">
+       
+        <h2>{{ $product->name }}</h2>
+        <p>{{ $product->description }}</p>
+        <!-- Más detalles del producto aquí -->
+    </div>
                 @endforeach
             </ul>
             <form action="{{ url('/place-order') }}" method="POST">
