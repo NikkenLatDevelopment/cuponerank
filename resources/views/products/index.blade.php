@@ -96,7 +96,7 @@
                         <p>Descripción: {{ $product->description ?? 'No disponible' }}</p>
                         <p>Puntos: {{ $product->points ?? '0' }}</p>
                         <p>VC: {{ $product->vc_to_suggested ?? '0' }}</p>
-                        <p>Precio: {{ $product->suggested_price ?? '0' }} {{ config('app.currency', 'USD') }}</p>
+                        <p>Precio: {{ $product->suggested_price ?? '0' }} {{ config('app.currency') }}</p>
                         <input type="number" name="quantity[{{ $product->id }}]" min="0" value="0" style="width: 50px;">
                         <label for="quantity-{{ $product->id }}">Cantidad</label>
                     </div>
