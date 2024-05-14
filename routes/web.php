@@ -26,7 +26,8 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
 
 
-Route::get('/panel', [PanelController::class, 'index'])->name('index.panel');
+Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
+Route::post('/panel/searchCoupon', [PanelController::class, 'searchCoupon'])->name('panel.search');
 
 
 Route::get('/test-db', function () {
