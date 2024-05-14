@@ -23,18 +23,21 @@ class ProductController extends Controller
         'wp.vc_to_suggested', 
         'wp.suggested_price', 
         'wp.country_id', 
-        'wp.suggested_tax', 
+        'wp.suggested_tax',
+        'wp.applies_to_tv', 
         DB::raw('wp.suggested_price + wp.suggested_tax AS total'), 
         'wp.active_status'
     )
     ->where('wp.country_id', 2)
     ->where('wp.active_status', 1)
-    ->where('p.sku', 'like', '%M')
+   // ->where('p.sku', 'like', '%M')
+    ->where('wp.applies_to_tv', 1)
     ->orderBy('p.id', 'asc')
     ->limit(20)
     ->get();
     
-    //dd($products);
+   // dd($products); 
+
 
         return view('products.index', compact('products'));
     }
@@ -52,4 +55,23 @@ class ProductController extends Controller
     
         return view('products.checkout', compact('products'));
     }
+
+    public function updateCuponStatus($encodedEmail)
+    {
+        // Decodificar el correo electrónico
+        $email = base64_decode($encodedEmail);
+    
+        // Establecer la conexión 'SQL173' y realizar la consulta y actualización
+        $result = DB::connection('SQL173')->table('PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones')
+                    ->where('email', $email)
+                    ->update(['redimido' => 1]);
+    
+        // Comprobar si la actualización fue exitosa y responder
+        if ($result) {
+            return response()->json(['success' => true, 'message' => 'Cupón redimido exitosamente.']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'No se encontró el cupón o ya estaba redimido.']);
+        }
+    }
+
 }
