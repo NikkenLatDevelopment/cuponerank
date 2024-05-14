@@ -6,17 +6,31 @@
     <title>Catálogo de Productos</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        color: #333;
+        position: relative; /* Asegura que el body tenga posición relativa */
+        padding-top: 60px; /* Añade espacio para evitar que el contenido se solape con el botón */
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    .fixed-button {
+        position: fixed;
+        top: 10px; /* Espacio desde el top del viewport */
+        right: 10px; /* Espacio desde el right del viewport */
+        background-color: #007BFF; /* Color de fondo del botón */
+        color: white; /* Color del texto del botón */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000; /* Asegura que el botón se muestre sobre otros elementos */
+    }
         header {
             background: #333;
             color: #fff;
@@ -64,6 +78,8 @@
     </style>
 </head>
 <body>
+<button class="fixed-button" onclick="location.href='{{ url('/checkout') }}'">Ir al Checkout</button>
+
     <header>
         <div class="container">
             <h1>Catálogo de Productos</h1>
@@ -83,7 +99,7 @@
                     </div>
                 @endforeach
             </div>
-            <button type="submit" style="margin: 20px; padding: 10px 20px; font-size: 16px;">Ir al Checkout</button>
+            <button type="submit" style="margin: 20px; padding: 10px 20px; font-size: 16px;">Ir al Checkout {</button>
         </form>
     </div>
 </body>
