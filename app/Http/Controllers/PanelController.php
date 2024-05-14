@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\coreCms;
 
 class PanelController extends Controller
 {
@@ -15,6 +18,19 @@ class PanelController extends Controller
     {
         //
         return view('panel.index');        
+    }
+
+    public function searchCoupon(Request $request){
+        
+        $coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones WHERE codigoCupon = ?', [$request->coupon]);
+        //$coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones where codigoCupon = ');
+        if (!empty($coupon)) {
+            return response()->json(['success' => 'Cupón encontrado.', 'data' => $coupon], 200);            
+        }else{
+            return response()->json(['error' => 'No se encontró ningún cupón con ese código.'], 404);
+        }
+
+        //dd($coupon);
     }
 
     /**

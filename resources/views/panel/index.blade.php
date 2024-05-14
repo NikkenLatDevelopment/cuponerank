@@ -14,16 +14,16 @@
         </div>
     </nav>
 
-    <div class="w-100 bg-secondary">
+    <div class="w-100 bg-secondary div-form">
         <div class="container bg-light">
             <div class="row py-5 px-5">
 
-                <form>
+                <form action="#">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Cupón:</label>
                         <input type="text" class="form-control w-50" id="cupon">                    
                     </div>                
-                    <button type="submit" class="btn btn-primary">Búscar</button>
+                    <button type="button" class="btn btn-primary" onclick="searchCoupon()">Búscar</button>
                 </form>
                 
             </div>
@@ -43,7 +43,7 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>                        
-                            <td>@mdo</td>
+                            <td><button type="button" class="btn btn-primary">Activar</button></td>
                         </tr>
                         
                     </tbody>
@@ -56,6 +56,37 @@
     </div>
 
 </div>
+
+
+@push('scripts')
+<script>
+
+    function searchCoupon(){
+        $coupon = $("#cupon").val();
+        if($coupon != ''){
+
+            var url = '{{ route("panel.search") }}';
+            axios.post(url, {
+                'coupon': $coupon,
+            }).then(response => {
+                                //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
+                                //console.log(response);
+                if (response.data.success) {
+                                
+                }
+                                
+
+            }).catch(error => {
+                                //console.log("ssd");
+                            
+            });
+
+        }
+        
+    }
+
+</script>
+@endpush
 
 
 
