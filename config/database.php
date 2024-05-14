@@ -78,6 +78,19 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'SQL173' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_SQL173', 'localhost'),
+            'port' => env('DB_PORT_SQL173', '1433'),
+            'database' => env('DB_DATABASE_SQL173', 'forge'),
+            'username' => env('DB_USERNAME_SQL173', 'forge'),
+            'password' => env('DB_PASSWORD_SQL173', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'trust_server_certificate' => true
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
