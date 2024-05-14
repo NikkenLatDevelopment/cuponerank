@@ -34,17 +34,17 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">#Código</th>
                         <th scope="col">First</th>                        
                         <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {{--<tr>
                             <th scope="row">1</th>
                             <td>Mark</td>                        
                             <td><button type="button" class="btn btn-primary">Activar</button></td>
-                        </tr>
+                        </tr>--}}
                         
                     </tbody>
                 </table>
@@ -72,7 +72,19 @@
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);
                 if (response.data.success) {
+
+                    response.data.data.forEach(function(item) {
+                    var fila = `<tr>
+                                    <th scope="row">${item.codigoCupon}</th>
+                                    <td>${item.email}</td>
+                                    <td><button type="button" class="btn btn-primary">Activar</button></td>
+                                </tr>`;
+                    $('.table tbody').append(fila);
+                });
+
                                 
+                }else{
+
                 }
                                 
 

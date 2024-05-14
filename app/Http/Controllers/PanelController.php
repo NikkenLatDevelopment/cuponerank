@@ -23,7 +23,8 @@ class PanelController extends Controller
     public function searchCoupon(Request $request){
         
         $coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones WHERE codigoCupon = ?', [$request->coupon]);
-        
+        //$coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones');
+        //dd($coupon);
         if (!empty($coupon)) {
             return response()->json(['success' => 'Cupón encontrado.', 'data' => $coupon], 200);            
         }else{
