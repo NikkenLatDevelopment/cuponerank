@@ -21,7 +21,7 @@
     </div>
                 @endforeach
             </ul>
-            <form action="{{ url('/place-order') }}" method="POST">
+            <form action="{{ url('/getCheckout') }}" method="POST">
                 @csrf
                 <button type="submit" style="padding: 10px 20px; font-size: 16px;">Confirmar Pedido</button>
             </form>
