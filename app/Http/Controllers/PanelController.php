@@ -34,68 +34,22 @@ class PanelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCoupon(Request $request)
     {
         //
-    }
+        $coupon = DB::connection('SQL173')->update('UPDATE PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones set redimido = 0 WHERE codigoCupon = ?', [$request->coupon]);
+        if ($coupon > 0) {
+            //echo "Actualización satisfactoria. Número de filas afectadas: $affected";
+            return response()->json(['success' => 'Redimido.'], 200);       
+        } else {
+            return response()->json(['error' => 'Problema al redimir.'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
