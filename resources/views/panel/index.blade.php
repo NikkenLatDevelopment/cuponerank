@@ -107,7 +107,7 @@
                     Swal.fire({
                         title: "<strong>Atención</strong>",
                         icon: "error",
-                        html: "Hubo un problema para buscar el cupón, intentalo más tarde.",                                        
+                        html: "No se encontró el cupón.",                                        
                         showCloseButton: false,
                         showCancelButton: false,
                         focusConfirm: false,
@@ -125,7 +125,7 @@
                 Swal.fire({
                         title: "<strong>Atención</strong>",
                         icon: "error",
-                        html: "Hubo un problema para buscar el cupón, intentalo más tarde.",                                        
+                        html: "No se encontró el cupón.",                                        
                         showCloseButton: false,
                         showCancelButton: false,
                         focusConfirm: false,
