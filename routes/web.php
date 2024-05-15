@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\checkoutController;
 
 
 
@@ -58,3 +59,5 @@ Route::get('/test-db', function () {
 });
 
 Route::get('/redimir-cupon/{encodedEmail}', [ProductController::class, 'updateCuponStatus']);
+
+Route::post('/getCheckout', [checkoutController::class, 'getCheckout'])->name('getCheckout');

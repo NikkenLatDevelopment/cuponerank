@@ -10,6 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $products = DB::table('products as p')
     ->join('warehouses_products as wp', 'p.id', '=', 'wp.product_id')
     ->select(
@@ -52,15 +53,24 @@ class ProductController extends Controller
             $product->quantity = $quantities[$product->id];
             return $product;
         });
+        
+        session()->forget('items');
+        $items = "";
+        for ($x=0; $x < sizeof($products); $x++) { 
+            $items .= ";" . $products[$x]->sku . ":" . $products[$x]->quantity;
+        }
+        session(['items' => "$items"]);
     
         return view('products.checkout', compact('products'));
     }
 
     public function updateCuponStatus($encodedEmail)
     {
+        session()->flush();
         // Decodificar el correo electrónico
         $email = base64_decode($encodedEmail);
-    
+        session(['email' => "$email"]);
+
         // Establecer la conexión 'SQL173' y realizar la consulta y actualización
         $result = DB::connection('SQL173')->table('PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones')
                     ->where('email', $email)
