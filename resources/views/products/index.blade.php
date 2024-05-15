@@ -24,6 +24,13 @@
         top: 20px;       /* Espacio desde el top de la ventana */
         right: 20px;     /* Espacio desde el right de la ventana */
         z-index: 1000;   /* Asegura que el botón se mantenga sobre otros elementos */
+        background-color: #3a7ca5; /* Color de fondo azul verdoso */
+        color: white;    /* Color del texto */
+        border: none;    /* Sin borde */
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px; /* Bordes redondeados */
+        cursor: pointer; /* Cambia el cursor a tipo puntero */
     }
         header {
             background: #333;
