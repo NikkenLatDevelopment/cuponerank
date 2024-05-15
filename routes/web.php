@@ -62,3 +62,5 @@ Route::get('/test-db', function () {
 Route::get('/redimir-cupon/{encodedEmail}', [ProductController::class, 'updateCuponStatus']);
 
 Route::post('/getCheckout', [checkoutController::class, 'getCheckout'])->name('getCheckout');
+Route::post('/getAccess', [checkoutController::class, 'getAccess']);
+Route::get('/redimir', [checkoutController::class, 'redimir'])->name('redimir')->middleware('signed');
