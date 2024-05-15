@@ -15,9 +15,18 @@
         padding-top: 60px; /* Añade espacio para evitar que el contenido se solape con el botón */
     }
     .container {
+        display: flex;
+        justify-content: space-between; /* Alinea los elementos a los extremos del contenedor */
+        align-items: center; /* Centra los elementos verticalmente */
         width: 80%;
         margin: auto;
         overflow: hidden;
+    }
+    .header-logo {
+        height: 50px; /* Ajusta la altura del logo */
+        position: absolute; /* Posicionamiento absoluto dentro del header */
+        right: 0; /* Alinea el logo a la derecha */
+        top: 10px; /* Posición vertical para centrar el logo */
     }
     .fixed-button {
         position: fixed; /* Fija la posición del elemento respecto a la ventana del navegador */
@@ -33,12 +42,13 @@
         cursor: pointer; /* Cambia el cursor a tipo puntero */
     }
         header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #0779e4 3px solid;
-        }
+        background: #333;
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #0779e4 3px solid;
+        position: relative; /* Permite posicionar el logo absolutamente respecto a este bloque */
+    }
         header a {
             color: #fff;
             text-decoration: none;
@@ -82,9 +92,10 @@
 <!--button class="fixed-button" onclick="location.href='{{ url('/checkout') }}'">Ir al Checkout</button>-->
 
     <header>
-        <div class="container">
-            <h1>Catálogo de Productos</h1>
-        </div>
+    <div class="container">
+        <h1>Catálogo de Productos</h1>
+        <img src="https://nikkenlatam.com/site/custom/img/general/logo-nikken.png" alt="Logo de Nikken" class="header-logo">
+    </div>
     </header>
     <div class="container">
         <form action="{{ url('/checkout') }}" method="POST">
