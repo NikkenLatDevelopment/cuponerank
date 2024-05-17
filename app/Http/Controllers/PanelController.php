@@ -17,6 +17,7 @@ class PanelController extends Controller
     public function index()
     {
         //
+        //dd(request()->email);
         return view('panel.index');        
     }
 
@@ -50,6 +51,14 @@ class PanelController extends Controller
         } else {
             return response()->json(['error' => 'Problema al redimir.'], 404);
         }
+
+    }
+
+    public function getAccess(){
+
+        $email = request()->e;
+        $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['email' => "$email"]);
+        return $url;
 
     }
 }

@@ -27,9 +27,11 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
 
 
-Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
+Route::get('/panel', [PanelController::class, 'index'])->name('panel.index')->middleware('signed');
 Route::post('/panel/searchCoupon', [PanelController::class, 'searchCoupon'])->name('panel.search');
 Route::post('/panel/updateCoupon', [PanelController::class, 'updateCoupon'])->name('panel.update');
+Route::post('/panel/getAccess', [PanelController::class, 'getAccess']);
+//Route::get('/redimir', [checkoutController::class, 'redimir'])->name('redimir')->middleware('signed');
 
 
 Route::get('/test-db', function () {
