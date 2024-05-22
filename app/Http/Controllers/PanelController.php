@@ -73,9 +73,13 @@ class PanelController extends Controller
 
     public function getAccess(){
 
-        $email = request()->e;
-        $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['email' => "$email"]);
-        return $url;
+        try{
+            $email = request()->e;
+            $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['email' => "$email"]);
+            return $url;
+        } catch(Excepion $e) {
+            return "error";
+        }
 
     }
 
@@ -84,10 +88,10 @@ class PanelController extends Controller
         if($action == "SEARCH COUPON"){
             //dd("saveLog",$coupon,$agentEmail);
             try{
-            DB::connection('SQL173')->insert('
-                INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ', [$coupon, $agentName, $agentEmail, "", "SEARCH COUPON", $date, $hour]);
+                DB::connection('SQL173')->insert('
+                    INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ', [$coupon, $agentName, $agentEmail, "", "SEARCH COUPON", $date, $hour]);
             } catch (\Illuminate\Database\QueryException $ex) {
                 // Manejar la excepción
                 echo "Error al insertar: " . $ex->getMessage();
@@ -95,11 +99,10 @@ class PanelController extends Controller
         }else if($action == "ACTIVATE COUPON"){
 
             try{
-
-            DB::connection('SQL173')->insert('
-                INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ', [$coupon, $agentName, $agentEmail, "", "ACTIVATE COUPON", $date, $hour]);
+                DB::connection('SQL173')->insert('
+                    INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ', [$coupon, $agentName, $agentEmail, "", "ACTIVATE COUPON", $date, $hour]);
             } catch (\Illuminate\Database\QueryException $ex) {
                 // Manejar la excepción
                 echo "Error al insertar: " . $ex->getMessage();
