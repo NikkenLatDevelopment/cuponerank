@@ -55,14 +55,18 @@ class PanelController extends Controller
     public function updateCoupon(Request $request)
     {
         //
-        $coupon = DB::connection('SQL173')->update('UPDATE PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones set redimido = 0 WHERE codigoCupon = ?', [$request->coupon]);
-        if ($coupon > 0) {
-            //echo "Actualización satisfactoria. Número de filas afectadas: $affected";
-            $agentName = "test";
-            $this->saveLog($request->coupon,$agentName,$request->agentEmail,$request->userEmail,"ACTIVATE COUPON",date('Y-m-d'),date('H:i:s'));
-            return response()->json(['success' => 'Redimido.'], 200);       
-        } else {
-            return response()->json(['error' => 'Problema al redimir.'], 404);
+        try{
+            $coupon = DB::connection('SQL173')->update('UPDATE PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones set redimido = 0 WHERE codigoCupon = ?', [$request->coupon]);
+            if ($coupon > 0) {
+                //echo "Actualización satisfactoria. Número de filas afectadas: $affected";
+                $agentName = "test";
+                $this->saveLog($request->coupon,$agentName,$request->agentEmail,$request->userEmail,"ACTIVATE COUPON",date('Y-m-d'),date('H:i:s'));
+                return response()->json(['success' => 'Redimido.'], 200);       
+            } else {
+                return response()->json(['error' => 'Problema al redimir.'], 404);
+            }
+        } catch(Excepion $e) {
+            return response()->json(['error' => 'Hubo un problema '.$e], 500);
         }
 
     }
@@ -75,20 +79,31 @@ class PanelController extends Controller
 
     }
 
-    public function saveLog($coupon, $agentName, $agentEmail, $clientEmail, $action, $date, $hour){
+    public function saveLog($coupon, $agentName, $agentEmail, $clientEmail, $action, $date, $hour){        
         
         if($action == "SEARCH COUPON"){
             //dd("saveLog",$coupon,$agentEmail);
+            try{
             DB::connection('SQL173')->insert('
                 INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             ', [$coupon, $agentName, $agentEmail, "", "SEARCH COUPON", $date, $hour]);
+            } catch (\Illuminate\Database\QueryException $ex) {
+                // Manejar la excepción
+                echo "Error al insertar: " . $ex->getMessage();
+            }
         }else if($action == "ACTIVATE COUPON"){
+
+            try{
 
             DB::connection('SQL173')->insert('
                 INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             ', [$coupon, $agentName, $agentEmail, "", "ACTIVATE COUPON", $date, $hour]);
+            } catch (\Illuminate\Database\QueryException $ex) {
+                // Manejar la excepción
+                echo "Error al insertar: " . $ex->getMessage();
+            }
 
         }
 
