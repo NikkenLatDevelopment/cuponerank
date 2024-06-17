@@ -68,8 +68,10 @@
         if($coupon != ''){
 
             var url = '{{ route("panel.search") }}';
+            var email = '{{$email}}';
             axios.post(url, {
                 'coupon': $coupon,
+                'agentEmail': email,                
             }).then(response => {
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);
@@ -83,7 +85,7 @@
                                         <th scope="row">${item.codigoCupon}</th>
                                         <td>${item.email}</td>
                                         <td>Redimido</td>
-                                        <td><button type="button" class="btn btn-primary" onclick='activateCoupon("${item.codigoCupon}")'>Activar</button></td>
+                                        <td><button type="button" class="btn btn-primary" onclick='activateCoupon("${item.codigoCupon}","${item.email}")'>Activar</button></td>
                                     </tr>`;
 
                         }else{
@@ -158,11 +160,14 @@
         
     }
 
-    function activateCoupon($codigo){
+    function activateCoupon($codigo,$email){
             //alert($.trim($codigo));
             var url = '{{ route("panel.update") }}';
+            var agentEmail = '{{$email}}';
             axios.post(url, {
                 'coupon': $.trim($codigo),
+                'agentEmail': $.trim(agentEmail),
+                'userEmail': $email,
             }).then(response => {
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);

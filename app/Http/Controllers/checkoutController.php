@@ -22,4 +22,15 @@ class checkoutController extends Controller{
         return $url;
         return redirect($url);
     }
+
+    public function getAccess(){
+        $email = request()->e;
+        $url = \URL::temporarySignedRoute("redimir", now()->addMinutes(1), ['email' => "$email"]);
+        return $url;
+    }
+
+    public function redimir(){
+        $email = request()->email;
+        return "hola: " . $email;
+    }
 }
