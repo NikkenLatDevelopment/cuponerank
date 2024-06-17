@@ -78,7 +78,8 @@ class ProductController extends Controller
     
         // Comprobar si la actualización fue exitosa y responder
         if ($result) {
-            return response()->json(['success' => true, 'message' => 'Cupón redimido exitosamente.']);
+          //  return response()->json(['success' => true, 'message' => 'Cupón redimido exitosamente.']);
+            return view('products.index', compact('products'));
         } else {
             return response()->json(['success' => false, 'message' => 'No se encontró el cupón o ya estaba redimido.']);
         }
