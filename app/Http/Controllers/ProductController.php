@@ -72,7 +72,7 @@ class ProductController extends Controller
         session(['email' => "$email"]);
 
         // Establecer la conexión 'SQL173' y realizar la consulta y actualización
-        $result = DB::connection('SQL173')->table('PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones')
+        $result = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                     ->where('email', $email)
                     ->update(['redimido' => 1]);
     
