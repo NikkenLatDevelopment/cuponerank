@@ -55,7 +55,7 @@ Route::get('/test-db', function () {
         // Recuperar datos de la tabla ubiSorprende_Cupones de la conexión remota
        // $cuponesRemote = DB::connection('SQL173')->table('ubiSorprende_Cupones')->get();
        $coupon = DB::connection('SQL173')->select('SELECT * FROM LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones'); 
-       dd($coupon);
+     //  dd($coupon);
     } catch (\Exception $e) {
         echo "No se pudo conectar a la base de datos remota o recuperar datos: " . $e->getMessage();
     }
