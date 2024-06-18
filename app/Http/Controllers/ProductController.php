@@ -99,8 +99,9 @@ class ProductController extends Controller
 
             // Comprobar si se obtuvo el campo 'pais' y responder
             if ($pais) {
-                // Realiza alguna acción con la variable $pais, si es necesario
-                return response()->json(['success' => true, 'pais' => $pais]);
+                return redirect()->action(
+                    [ProductController::class, 'index'], ['pais' => $pais]
+                );
             } else {
                 return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
             }
