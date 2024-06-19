@@ -42,7 +42,7 @@ class ProductController extends Controller
    // dd($products); 
 
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products' , 'redimido'));
     }
     public function checkout(Request $request)
     {
