@@ -19,9 +19,17 @@ class checkoutController extends Controller{
         $dataUrl = base64_encode("$email&$items&$discount_abi&$env&$country&$type");
 
         $url = env('REDIRECT_URL') . "$dataUrl";
+        $updatedRows = \DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
+        ->where('email', $email)
+        ->increment('redimido');
+        
         return $url;
         return redirect($url);
+    
+    
+    
     }
+
 
     public function getAccess(){
         $email = request()->e;
