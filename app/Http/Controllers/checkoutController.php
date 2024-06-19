@@ -22,9 +22,18 @@ class checkoutController extends Controller{
         $updatedRows = \DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
         ->where('email', $email)
         ->increment('redimido');
-        
-        return $url;
-        return redirect($url);
+
+        if ($updatedRows) {
+            // Redirigir a la URL generada
+            return redirect($url);
+        } else {
+            // Manejar el caso en el que no se encontró el registro o la actualización falló
+            return response()->json(['success' => false, 'message' => 'No se pudo actualizar el campo redimido.']);
+        }
+
+
+        //return $url;
+       // return redirect($url);
     
     
     
