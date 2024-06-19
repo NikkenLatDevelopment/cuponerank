@@ -95,12 +95,13 @@ class ProductController extends Controller
             // Establecer la conexión 'SQL173' y realizar la consulta
             $pais = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                         ->where('email', $email)
-                        ->get();
+                        ->value('redimido')
+                        >get();
 
-            dd($pais);
+            //dd($pais);
                         // Comprobar si se obtuvo el campo 'pais' y responder
-            /*
-            if ($pais) {
+            
+            if ($redimido <= 3) {
                 
                 return redirect()->action(
                     [ProductController::class, 'index'], ['pais' => $pais]
@@ -109,7 +110,7 @@ class ProductController extends Controller
             } else {
                 return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
             }
-                */
+                
         }
 
 }
