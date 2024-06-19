@@ -10,7 +10,8 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $pais = $request->input('pais', 2);
+        $pais = session('pais');
+        $redimido = session('redimido');
 
         $products = DB::table('products as p')
     ->join('warehouses_products as wp', 'p.id', '=', 'wp.product_id')
@@ -101,13 +102,12 @@ class ProductController extends Controller
                 $redimido = $cupon ? $cupon->redimido : null;
              //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
-            
+             session(['pais' => $pais, 'redimido' => $redimido]);
+
             if ($redimido <= 3) {
                 
-                return redirect()->action(
-                    [ProductController::class, 'index'], ['pais' => $pais, 'redimido' => $redimido]
+                return redirect()->action([ProductController::class, 'index']);
 
-                );
             
             } else {
                 return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);

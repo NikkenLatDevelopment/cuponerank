@@ -97,6 +97,9 @@
         <img src="https://nikkenlatam.com/site/custom/img/general/logo-nikken.png" alt="Logo de Nikken" class="header-logo">
     </div>
     </header>
+    <div>
+        <p>Este cupon se ha redimido  {{$redimido}} veces.</p>
+    <div>
     <div class="container">
         <form action="{{ url('/checkout') }}" method="POST">
             @csrf
