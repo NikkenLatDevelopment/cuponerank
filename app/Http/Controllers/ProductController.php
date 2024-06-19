@@ -95,8 +95,8 @@ class ProductController extends Controller
             // Establecer la conexión 'SQL173' y realizar la consulta
             $pais = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                         ->where('email', $email)
-                        ->value('redimido')
-                        >get();
+                        ->value('redimido');
+                       // >get();
 
             //dd($pais);
                         // Comprobar si se obtuvo el campo 'pais' y responder
