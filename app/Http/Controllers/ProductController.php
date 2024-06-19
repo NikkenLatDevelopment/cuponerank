@@ -97,14 +97,19 @@ class ProductController extends Controller
                         ->where('email', $email)
                         ->value('pais');
 
-            // Comprobar si se obtuvo el campo 'pais' y responder
+            dd($pais);
+                        // Comprobar si se obtuvo el campo 'pais' y responder
+            /*
             if ($pais) {
+                
                 return redirect()->action(
                     [ProductController::class, 'index'], ['pais' => $pais]
                 );
+            
             } else {
                 return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
             }
+                */
         }
 
 }

@@ -61,8 +61,8 @@ Route::get('/test-db', function () {
     }
 });
 
-Route::get('/redimir-cupon/{encodedEmail}', [ProductController::class, 'updateCuponStatus']);
-Route::get('/acceso/{encodedEmail}', [ProductController::class, 'acceso']);
+Route::get('/redimir-cupon/{encodedEmail}', [ProductController::class, 'acceso']);
+//Route::get('/acceso/{encodedEmail}', [ProductController::class, 'acceso']);
 
 Route::post('/getCheckout', [checkoutController::class, 'getCheckout'])->name('getCheckout');
 Route::post('/getAccess', [checkoutController::class, 'getAccess']);
