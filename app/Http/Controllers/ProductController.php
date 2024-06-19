@@ -99,7 +99,7 @@ class ProductController extends Controller
 
                 $pais = $cupon ? $cupon->pais : null;
                 $redimido = $cupon ? $cupon->redimido : null;
-                dd(['pais' => $pais, 'redimido' => $redimido]);
+             //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
             
             if ($redimido <= 3) {
