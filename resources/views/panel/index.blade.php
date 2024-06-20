@@ -23,7 +23,7 @@
                         <label for="exampleInputEmail1" class="form-label">Cupón:</label>
                         <input type="text" class="form-control w-50" id="cupon">                    
                     </div>                
-                    <button type="button" class="btn btn-primary" onclick="searchCoupon()">Búscar</button>
+                    <button type="button" class="btn" onclick="searchCoupon()">Búscar</button>
                 </form>
                 
             </div>
@@ -79,13 +79,13 @@
 
                     response.data.data.forEach(function(item) {
                         var fila = '';
-                        if(item.redimido == 1){
+                        if(item.redimido >= 1){
 
                             fila = `<tr>
                                         <th scope="row">${item.codigoCupon}</th>
                                         <td>${item.email}</td>
-                                        <td>Redimido</td>
-                                        <td><button type="button" class="btn btn-primary" onclick='activateCoupon("${item.codigoCupon}","${item.email}")'>Activar</button></td>
+                                        <td>Redimido ${item.redimido} veces</td>
+                                        <td><button type="button" class="btn" onclick='activateCoupon("${item.codigoCupon}","${item.email}",${item.redimido})'>Activar</button></td>
                                     </tr>`;
 
                         }else{
@@ -94,7 +94,7 @@
                                         <th scope="row">${item.codigoCupon}</th>
                                         <td>${item.email}</td>
                                         <td>No redimido</td>
-                                        <td><button type="button" class="btn btn-primary" disabled>Activar</button></td>
+                                        <td><button type="button" class="btn" disabled>Activar</button></td>
                                     </tr>`;
 
                         }
@@ -160,7 +160,7 @@
         
     }
 
-    function activateCoupon($codigo,$email){
+    function activateCoupon($codigo,$email,$redimido){
             //alert($.trim($codigo));
             var url = '{{ route("panel.update") }}';
             var agentEmail = '{{$email}}';
@@ -168,6 +168,7 @@
                 'coupon': $.trim($codigo),
                 'agentEmail': $.trim(agentEmail),
                 'userEmail': $email,
+                'redimido': $redimido,
             }).then(response => {
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);
