@@ -18,7 +18,8 @@ class checkoutController extends Controller{
 
         $dataUrl = base64_encode("$email&$items&$discount_abi&$env&$country&$type");
 
-        $url = env('REDIRECT_URL') . "$dataUrl";
+        $url = "https://nikkenlatam.com/services/checkout/testredirect.php?app=cuponera&data=$dataUrl";
+        
         $updatedRows = \DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
         ->where('email', $email)
         ->increment('redimido');
