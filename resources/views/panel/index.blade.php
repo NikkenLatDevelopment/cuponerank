@@ -36,7 +36,8 @@
                         <tr>
                         <th scope="col">#Código</th>
                         <th scope="col">Email</th>                        
-                        <th scope="col">Estatus</th>                        
+                        <th scope="col">Estatus</th> 
+                        <th scope="col">Recuperar</th>                        
                         <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -80,12 +81,24 @@
                     response.data.data.forEach(function(item) {
                         var fila = '';
                         if(item.redimido >= 1){
+                            $recuperar = 0;
+                            if(item.redimido == 1){
+                                $recuperar = 1;
+                            }else if(item.redimido == 2){
+                                $recuperar = 2;
+                            }else if(item.redimido == 3){
+                                $recuperar = 3;
+                            }
 
                             fila = `<tr>
                                         <th scope="row">${item.codigoCupon}</th>
                                         <td>${item.email}</td>
                                         <td>Redimido ${item.redimido} veces</td>
-                                        <td><button type="button" class="btn" onclick='activateCoupon("${item.codigoCupon}","${item.email}",${item.redimido})'>Activar</button></td>
+                                        <td>
+                                            <span class="d-block">Puedes regerenar hasta ${$recuperar} redimidos</span>
+                                            <input type="number" id="reactivar" value="1" min="1" max="${$recuperar}"/>
+                                        </td>
+                                        <td><button type="button" class="btn" onclick='activateCoupon("${item.codigoCupon}","${item.email}",${$recuperar})'>Activar</button></td>
                                     </tr>`;
 
                         }else{
@@ -169,6 +182,7 @@
                 'agentEmail': $.trim(agentEmail),
                 'userEmail': $email,
                 'redimido': $redimido,
+                'reactivar': $("#reactivar").val(),
             }).then(response => {
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);

@@ -55,7 +55,7 @@ class PanelController extends Controller
     public function updateCoupon(Request $request)
     {
         //
-        $redimido = $request->redimido - 1;
+        $redimido = $request->redimido - $request->reactivar;
         try{
             $coupon = DB::connection('SQL173')->update('UPDATE LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones set redimido = '.$redimido.' WHERE codigoCupon = ?', [$request->coupon]);
             if ($coupon > 0) {
