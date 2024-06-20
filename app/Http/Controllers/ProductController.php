@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $pais = session('pais');
+        $redimido = session('redimido');
 
         $products = DB::table('products as p')
     ->join('warehouses_products as wp', 'p.id', '=', 'wp.product_id')
@@ -29,7 +31,7 @@ class ProductController extends Controller
         DB::raw('wp.suggested_price + wp.suggested_tax AS total'), 
         'wp.active_status'
     )
-    ->where('wp.country_id', 2)
+    ->where('wp.country_id', $pais)
     ->where('wp.active_status', 1)
    // ->where('p.sku', 'like', '%M')
     ->where('wp.applies_to_tv', 1)
@@ -40,7 +42,7 @@ class ProductController extends Controller
    // dd($products); 
 
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products' , 'redimido'));
     }
     public function checkout(Request $request)
     {
@@ -78,10 +80,39 @@ class ProductController extends Controller
     
         // Comprobar si la actualización fue exitosa y responder
         if ($result) {
-            return response()->json(['success' => true, 'message' => 'Cupón redimido exitosamente.']);
+          //  return response()->json(['success' => true, 'message' => 'Cupón redimido exitosamente.']);
+            return view('products.index', compact('products'));
         } else {
             return response()->json(['success' => false, 'message' => 'No se encontró el cupón o ya estaba redimido.']);
         }
     }
+         public function acceso($encodedEmail)
+        {
+            session()->flush();
+            // Decodificar el correo electrónico
+            $email = base64_decode($encodedEmail);
+            session(['email' => "$email"]);
+
+            // Establecer la conexión 'SQL173' y realizar la consulta
+            $cupon = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
+                ->where('email', $email)
+                ->first();
+
+                $pais = $cupon ? $cupon->pais : null;
+                $redimido = $cupon ? $cupon->redimido : null;
+             //   dd(['pais' => $pais, 'redimido' => $redimido]);
+
+             session(['pais' => $pais, 'redimido' => $redimido]);
+
+            if ($redimido <= 3) {
+                
+                return redirect()->action([ProductController::class, 'index']);
+
+            
+            } else {
+                return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
+            }
+                
+        }
 
 }
