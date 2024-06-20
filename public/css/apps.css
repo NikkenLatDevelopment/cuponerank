@@ -1,21 +1,29 @@
 body{
-     /* background-image: url('/images/bg-nikken.png');
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-position: bottom; */
-    height: 100%;
-    margin: 0;
+    /* background-image: url('/images/bg-nikken.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom; */
+   height: 100%;
+   margin: 0;
 }
 .nvar-panel{
-    background-color: #333d46 !important;
+   background-color: #198754 !important;
+}
+.btn{
+   background-color: #198754 !important;
+   color: white !important;
+}
+.btn:hover{
+   background-color: #0a502f;
+   border-color: #0a502f;  
 }
 .bg-general{
-    /* background-image: url('/images/bg-nikken.png'); */
-    background-size: cover;
-    background-position: bottom;
+   /* background-image: url('/images/bg-nikken.png'); */
+   background-size: cover;
+   background-position: bottom;
 }
 .div-form{
-    min-height: 100vh;  /* Asegura que el fondo tome al menos el alto de la ventana */
-    display: flex;
-    flex-direction: column;
+   min-height: 100vh;  /* Asegura que el fondo tome al menos el alto de la ventana */
+   display: flex;
+   flex-direction: column;
 }

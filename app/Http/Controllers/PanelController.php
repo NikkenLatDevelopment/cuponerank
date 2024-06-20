@@ -26,7 +26,7 @@ class PanelController extends Controller
 
         try{
 
-            $coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones WHERE codigoCupon = ?', [$request->coupon]);
+            $coupon = DB::connection('SQL173')->select('SELECT * FROM LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones WHERE codigoCupon = ?', [$request->coupon]);
             //$coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones');
             //dd($coupon);
             $agentName = "test";
@@ -55,8 +55,9 @@ class PanelController extends Controller
     public function updateCoupon(Request $request)
     {
         //
+        $redimido = $request->redimido - $request->reactivar;
         try{
-            $coupon = DB::connection('SQL173')->update('UPDATE PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones set redimido = 0 WHERE codigoCupon = ?', [$request->coupon]);
+            $coupon = DB::connection('SQL173')->update('UPDATE LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones set redimido = '.$redimido.' WHERE codigoCupon = ?', [$request->coupon]);
             if ($coupon > 0) {
                 //echo "Actualización satisfactoria. Número de filas afectadas: $affected";
                 $agentName = "test";
@@ -75,7 +76,8 @@ class PanelController extends Controller
 
         try{
             $email = request()->e;
-            $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['email' => "$email"]);
+            $decodedCod = base64_decode($email);
+            $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['e' => "$email"]);
             return $url;
         } catch(Excepion $e) {
             return "error";
@@ -89,7 +91,7 @@ class PanelController extends Controller
             //dd("saveLog",$coupon,$agentEmail);
             try{
                 DB::connection('SQL173')->insert('
-                    INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
+                    INSERT INTO LAT_NIKKEN_TV.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 ', [$coupon, $agentName, $agentEmail, "", "SEARCH COUPON", $date, $hour]);
             } catch (\Illuminate\Database\QueryException $ex) {
@@ -100,7 +102,7 @@ class PanelController extends Controller
 
             try{
                 DB::connection('SQL173')->insert('
-                    INSERT INTO PLAN_INFLUENCIA_MK.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
+                    INSERT INTO LAT_NIKKEN_TV.dbo.Log_Panel_UBI (codigo, nombreAgente, emailAgente, emailUser, accion, fecha, hora)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 ', [$coupon, $agentName, $agentEmail, "", "ACTIVATE COUPON", $date, $hour]);
             } catch (\Illuminate\Database\QueryException $ex) {
