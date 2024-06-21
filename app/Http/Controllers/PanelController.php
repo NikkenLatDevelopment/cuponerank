@@ -18,20 +18,21 @@ class PanelController extends Controller
     {
         //
         //dd(request()->email);
-        $email = $request->email;
+        $email = $request->e;
         return view('panel.index',compact("email"));        
     }
 
     public function searchCoupon(Request $request){
+        //dd(base64_decode($request->agentEmail));
 
         try{
 
-            $coupon = DB::connection('SQL173')->select('SELECT * FROM LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones WHERE codigoCupon = ?', [$request->coupon]);
+            $coupon = DB::connection('SQL173')->select('SELECT * FROM LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones WHERE email = ?', [$request->email]);
             //$coupon = DB::connection('SQL173')->select('SELECT * FROM PLAN_INFLUENCIA_MK.dbo.ubiSorprende_Cupones');
             //dd($coupon);
             $agentName = "test";
             if (!empty($coupon)) {
-                $this->saveLog($request->coupon,$agentName,$request->agentEmail,"","SEARCH COUPON",date('Y-m-d'),date('H:i:s'));
+                $this->saveLog($request->coupon,$agentName,base64_decode($request->agentEmail),"","SEARCH COUPON",date('Y-m-d'),date('H:i:s'));
                 return response()->json(['success' => 'Cupón encontrado.', 'data' => $coupon], 200);            
             }else{
                 return response()->json(['error' => 'No se encontró ningún cupón con ese código.'], 404);
@@ -61,7 +62,7 @@ class PanelController extends Controller
             if ($coupon > 0) {
                 //echo "Actualización satisfactoria. Número de filas afectadas: $affected";
                 $agentName = "test";
-                $this->saveLog($request->coupon,$agentName,$request->agentEmail,$request->userEmail,"ACTIVATE COUPON",date('Y-m-d'),date('H:i:s'));
+                $this->saveLog($request->coupon,$agentName,base64_decode($request->agentEmail),$request->userEmail,"ACTIVATE COUPON",date('Y-m-d'),date('H:i:s'));
                 return response()->json(['success' => 'Redimido.'], 200);       
             } else {
                 return response()->json(['error' => 'Problema al redimir.'], 404);

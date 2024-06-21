@@ -20,8 +20,8 @@
 
                 <form action="#">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Cupón:</label>
-                        <input type="text" class="form-control w-50" id="cupon">                    
+                        <label for="exampleInputEmail1" class="form-label">Email:</label>
+                        <input type="text" class="form-control w-50" id="email">                    
                     </div>                
                     <button type="button" class="btn" onclick="searchCoupon()">Búscar</button>
                 </form>
@@ -64,15 +64,16 @@
 <script>
 
     function searchCoupon(){
-        $coupon = $("#cupon").val();
+        $email = $("#email").val();
+        //alert($email);
         $('.table tbody').empty();
-        if($coupon != ''){
+        if($email != ''){
 
             var url = '{{ route("panel.search") }}';
-            var email = '{{$email}}';
+            var emailAgent = '{{$email}}';
             axios.post(url, {
-                'coupon': $coupon,
-                'agentEmail': email,                
+                'email': $email,
+                'agentEmail': emailAgent,                
             }).then(response => {
                                 //$(".searchPharmacy").removeAttr('disabled').html("VIEW PRICES");
                                 //console.log(response);
