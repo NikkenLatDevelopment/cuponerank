@@ -9,94 +9,102 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
+            background: #f9f9f9;
             color: #333;
-            position: relative; /* Asegura que el body tenga posición relativa */
-            padding-top: 60px; /* Añade espacio para evitar que el contenido se solape con el botón */
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
+            width: 90%;
             margin: auto;
-            overflow: hidden;
-        }
-        .header-logo {
-            height: 50px; /* Ajusta la altura del logo */
-            position: absolute; /* Posicionamiento absoluto dentro del header */
-            right: 0; /* Alinea el logo a la derecha */
-            top: 10px; /* Posición vertical para centrar el logo */
-        }
-        .fixed-button {
-            position: fixed; /* Fija la posición del elemento respecto a la ventana del navegador */
-            top: 20px;       /* Espacio desde el top de la ventana */
-            right: 20px;     /* Espacio desde el right de la ventana */
-            z-index: 1000;   /* Asegura que el botón se mantenga sobre otros elementos */
-            background-color: #3a7ca5; /* Color de fondo azul verdoso */
-            color: white;    /* Color del texto */
-            border: none;    /* Sin borde */
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px; /* Bordes redondeados */
-            cursor: pointer; /* Cambia el cursor a tipo puntero */
+            padding: 20px;
+            max-width: 1200px;
         }
         header {
-            background: #333;
+            background: #343a40;
             color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #0779e4 3px solid;
-            position: relative; /* Permite posicionar el logo absolutamente respecto a este bloque */
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
         }
         header a {
             color: #fff;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 16px;
+            font-size: 24px;
+            font-weight: bold;
         }
         .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
         .product {
             background: white;
-            margin: 10px;
-            box-shadow: 0 0 10px #ccc;
-            width: calc(25% - 20px);
-            padding: 10px;
-            box-sizing: border-box;
-            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: scale(1.05);
         }
         .product img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
+            border-radius: 8px 8px 0 0;
         }
-        h2 {
+        .product h2 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #007bff;
+        }
+        .product p {
+            font-size: 14px;
+            color: #666;
+        }
+        .product button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .product button:hover {
+            background: #0056b3;
+        }
+        .checkout-button {
+            display: block;
+            width: 100%;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px;
             font-size: 18px;
-            margin: 5px 0;
+            text-align: center;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 20px;
         }
-        p {
-            font-size: 16px;
-            color: #555;
+        .checkout-button:hover {
+            background: #218838;
         }
-        @media (max-width: 600px) {
-            .product {
-                width: calc(50% - 20px);
-            }
+        .no-products {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin: 50px 0;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <a href="#">Mi Tienda</a>
-            <img class="header-logo" src="path/to/logo.png" alt="Logo de la tienda">
-        </div>
-        <button class="fixed-button">Carrito</button>
+        <a href="#">Cuponera</a>
     </header>
     <div class="container">
         <h1>Checkout</h1>
@@ -107,16 +115,17 @@
                         <img src="{{ $product->detail_image ? asset('https://storage.googleapis.com/tv-store/Products/images/'.$product->detail_image) : asset('path/to/default-image.jpg') }}" alt="Imagen de {{ $product->name }}">
                         <h2>{{ $product->name }}</h2>
                         <p>{{ $product->description }}</p>
-                        <!-- Más detalles del producto aquí -->
+                        <!-- Botón de acción para cada producto -->
+                        <button>Agregar al Carrito</button>
                     </div>
                 @endforeach
             </div>
             <form action="{{ url('/getCheckout') }}" method="POST">
                 @csrf
-                <button type="submit" style="padding: 10px 20px; font-size: 16px;">Confirmar Pedido</button>
+                <button type="submit" class="checkout-button">Confirmar Pedido</button>
             </form>
         @else
-            <p>No hay productos seleccionados.</p>
+            <p class="no-products">No hay productos seleccionados.</p>
         @endif
     </div>
 </body>
