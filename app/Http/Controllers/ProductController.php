@@ -13,6 +13,7 @@ class ProductController extends Controller
         $pais = session('pais');
         $redimido = session('redimido');
         $tipo_u= session('tipo_u');
+        $nombre_u= session('nombre_u');
 
         $products = DB::table('products as p')
     ->join('warehouses_products as wp', 'p.id', '=', 'wp.product_id')
@@ -43,7 +44,7 @@ class ProductController extends Controller
    // dd($products); 
 
 
-        return view('products.index', compact('products' , 'redimido', 'tipo_u'));
+        return view('products.index', compact('products' , 'redimido', 'tipo_u', 'nombre_u'));
     }
     public function checkout(Request $request)
     {
@@ -102,9 +103,10 @@ class ProductController extends Controller
                 $pais = $cupon ? $cupon->pais : null;
                 $redimido = $cupon ? $cupon->redimido : null;
                 $tipo_u = $cupon ? $cupon->tipo_u : null;
+                $nombre_u = $cupon ? $cupon->nombre_u : null;
              //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
-             session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u ]);
+             session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
 
             if ($redimido <= 3) {
                 
