@@ -98,7 +98,9 @@
     </div>
     </header>
     <div>
+      
         <p>Este cupon se ha redimido  {{$redimido}} veces.</p>
+       <!-- <p>tipo user  {{$tipo_u}} .</p>-->
     <div>
     <div class="container">
         <form action="{{ url('/checkout') }}" method="POST">
@@ -109,8 +111,10 @@
                         <img src="{{ asset('https://storage.googleapis.com/tv-store/Products/images/'.$product->detail_image) }}" alt="Imagen de {{ $product->name }}">
                         <h2>{{ $product->name }}</h2>       
                         <p>Descripción: {{ $product->description ?? 'No disponible' }}</p>
+                        @if($tipo_u != 'CLIENTE')
                         <p>Puntos: {{ $product->points ?? '0' }}</p>
                         <p>VC: {{ $product->vc_to_suggested ?? '0' }}</p>
+                        @endif                        
                         <p>Precio: {{ $product->suggested_price ?? '0' }} {{ config('app.currency') }}</p>
                         <input type="number" name="quantity[{{ $product->id }}]" min="0" value="0" style="width: 50px;">
                         <label for="quantity-{{ $product->id }}">Cantidad</label>

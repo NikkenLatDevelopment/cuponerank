@@ -32,6 +32,21 @@
             font-size: 24px;
             font-weight: bold;
         }
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .products-header h2 {
+            font-size: 24px;
+            margin: 0;
+            color: #007bff;
+        }
+        .products-header span {
+            font-size: 18px;
+            color: #666;
+        }
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -62,6 +77,11 @@
         .product p {
             font-size: 14px;
             color: #666;
+        }
+        .product .quantity {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
         }
         .product button {
             background: #007bff;
@@ -109,14 +129,20 @@
     <div class="container">
         <h1>Checkout</h1>
         @if(count($products) > 0)
+            <!--
+            <div class="products-header">
+                <h2>Productos Seleccionados</h2>
+                <span>{{ count($products) }} producto(s) seleccionado(s)</span>
+            </div>
+    -->
             <div class="products">
                 @foreach($products as $product)
                     <div class="product">
                         <img src="{{ $product->detail_image ? asset('https://storage.googleapis.com/tv-store/Products/images/'.$product->detail_image) : asset('path/to/default-image.jpg') }}" alt="Imagen de {{ $product->name }}">
                         <h2>{{ $product->name }}</h2>
                         <p>{{ $product->description }}</p>
+                        <p class="quantity">Cantidad: {{ $product->quantity }}</p>
                         <!-- Botón de acción para cada producto -->
-                        <button>Agregar al Carrito</button>
                     </div>
                 @endforeach
             </div>
