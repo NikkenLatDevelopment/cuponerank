@@ -35,6 +35,7 @@
                     <thead>
                         <tr>
                         <th scope="col">#Código</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Email</th>                        
                         <th scope="col">Estatus</th> 
                         <th scope="col">Recuperar</th>                        
@@ -91,8 +92,16 @@
                                 $recuperar = 3;
                             }
 
+                            var tipo = "";                            
+                            if(item.tipo_u == "CLIENTE"){
+                                tipo = "UBI";
+                            }else if(item.tipo_u == "CI"){
+                                tipo = "4x4";
+                            }
+
                             fila = `<tr>
                                         <th scope="row">${item.codigoCupon}</th>
+                                        <td>${tipo}</td>
                                         <td>${item.email}</td>
                                         <td>Redimido ${item.redimido} veces</td>
                                         <td>
@@ -104,10 +113,19 @@
 
                         }else{
 
+                            var tipo = "";                            
+                            if(item.tipo_u == "CLIENTE"){
+                                tipo = "UBI";
+                            }else if(item.tipo_u == "CI"){
+                                tipo = "4x4";
+                            }
+
                             fila = `<tr>
                                         <th scope="row">${item.codigoCupon}</th>
+                                        <td>${tipo}</td>
                                         <td>${item.email}</td>
                                         <td>No redimido</td>
+                                        <td></td>
                                         <td><button type="button" class="btn" disabled>Activar</button></td>
                                     </tr>`;
 
