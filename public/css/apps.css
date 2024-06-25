@@ -7,17 +7,7 @@ body{
    margin: 0;
 }
 .nvar-panel{
-<<<<<<< HEAD
-    background-color: #198754 !important;
-}
-.btn{
-    background-color: #198754 !important;
-    color: white !important;
-}
-.btn:hover{
-    background-color: #0a502f;
-    border-color: #0a502f;  
-=======
+
    background-color: #198754 !important;
 }
 .btn{
@@ -27,7 +17,7 @@ body{
 .btn:hover{
    background-color: #0a502f;
    border-color: #0a502f;  
->>>>>>> c8f4bd05df22462b83a5f38917a6b0d6c22ec746
+
 }
 .bg-general{
    /* background-image: url('/images/bg-nikken.png'); */
