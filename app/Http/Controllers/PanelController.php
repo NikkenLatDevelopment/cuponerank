@@ -78,7 +78,8 @@ class PanelController extends Controller
         try{
             $email = request()->e;
             $decodedCod = base64_decode($email);
-            $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(1), ['e' => "$email"]);
+            $url = \URL::temporarySignedRoute("panel.index", now()->addMinutes(600), ['e' => "$email"]);
+            //$url = route("panel.index", ['e' => $email]);
             return $url;
         } catch(Excepion $e) {
             return "error";
