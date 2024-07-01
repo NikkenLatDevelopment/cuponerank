@@ -101,15 +101,15 @@ class ProductController extends Controller
             $cupon = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                 ->where('email', $email)
                 ->first();
-                dd($cupon);
-                $pais = $cupon ? $cupon->pais : null;
-                $redimido = $cupon ? $cupon->redimido : null;
-                $tipo_u = $cupon ? $cupon->tipo_u : null;
-                $nombre_u = $cupon ? $cupon->nombre_u : null;
+                
+            $pais = $cupon ? $cupon->pais : null;
+            $redimido = $cupon ? $cupon->redimido : null;
+            $tipo_u = $cupon ? $cupon->tipo_u : null;
+            $nombre_u = $cupon ? $cupon->nombre_u : null;
                
-             //   dd(['pais' => $pais, 'redimido' => $redimido]);
+            //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
-             session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
+            session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
 
             if ($redimido <= 3) {
                 
