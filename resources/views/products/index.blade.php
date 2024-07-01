@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos</title>
+    <title>Cupónmanía Catálogo de Productos</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -98,7 +98,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Catálogo de Productos</h1>
+            <h1>Cupónmanía Catálogo de Productos</h1>
             <img src="https://nikkenlatam.com/site/custom/img/general/logo-nikken.png" alt="Logo de Nikken" class="header-logo">
             <div class="user-info">
                 <p><b>Bienvenido {{$nombre_u}}</b></p>

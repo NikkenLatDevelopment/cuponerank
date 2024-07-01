@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Cupónmanía Checkout</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -126,7 +126,7 @@
 </head>
 <body>
     <header>
-        <a href="#">Cuponera</a>
+        <a href="#">Cupónmanía</a>
     </header>
     <div class="container">
         <h1>Checkout</h1>
