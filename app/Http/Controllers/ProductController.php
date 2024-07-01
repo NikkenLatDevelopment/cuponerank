@@ -101,24 +101,41 @@ class ProductController extends Controller
             $cupon = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                 ->where('email', $email)
                 ->first();
+
                 
             $pais = $cupon ? $cupon->pais : null;
             $redimido = $cupon ? $cupon->redimido : null;
             $tipo_u = $cupon ? $cupon->tipo_u : null;
             $nombre_u = $cupon ? $cupon->nombre_u : null;
+
+            if($tipo_u === 'CLIENTE'){
+                session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
+
+                if ($redimido < 1) {
+                    
+                    return redirect()->action([ProductController::class, 'index']);
+    
+                
+                } else {
+                    return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
+                }
+            }
+            else{
+                session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
+
+                if ($redimido <= 3) {
+                    
+                    return redirect()->action([ProductController::class, 'index']);
+    
+                
+                } else {
+                    return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
+                }
+            }
                
             //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
-            session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
-
-            if ($redimido <= 3) {
-                
-                return redirect()->action([ProductController::class, 'index']);
-
             
-            } else {
-                return response()->json(['success' => false, 'message' => 'No se encontró el cupón.']);
-            }
                 
         }
 
