@@ -57,7 +57,6 @@ class checkoutController extends Controller{
         $response = $this->createClientUser($email);
         if ($response->status == '200'){    
             $country = \DB::connection('mysql')->table('users')->select('country_id')->where('email', '=', $email)->get();
-            return $country;
                 $country = $country[0]->country_id;
                 $discount_abi = "S";
                 $env = 1;
