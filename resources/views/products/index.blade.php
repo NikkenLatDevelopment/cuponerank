@@ -6,51 +6,52 @@
     <title>Catálogo de Productos</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
-            color: #333;
-            position: relative; /* Asegura que el body tenga posición relativa */
-            padding-top: 60px; /* Añade espacio para evitar que el contenido se solape con el botón */
+            background: url('{{ asset('images/Fondo01.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            position: relative;
+            padding-top: 60px;
         }
         .container {
             display: flex;
-            justify-content: space-between; /* Alinea los elementos a los extremos del contenedor */
-            align-items: center; /* Centra los elementos verticalmente */
+            justify-content: space-between;
+            align-items: center;
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
         .header-logo {
-            height: 50px; /* Ajusta la altura del logo */
-            position: absolute; /* Posicionamiento absoluto dentro del header */
-            right: 0; /* Alinea el logo a la derecha */
-            top: 10px; /* Posición vertical para centrar el logo */
+            height: 50px;
+            position: absolute;
+            right: 0;
+            top: 10px;
         }
         .fixed-button {
-            position: fixed; /* Fija la posición del elemento respecto a la ventana del navegador */
-            top: 20px;       /* Espacio desde el top de la ventana */
-            right: 20px;     /* Espacio desde el right de la ventana */
-            z-index: 1000;   /* Asegura que el botón se mantenga sobre otros elementos */
-            background-color: #3a7ca5; /* Color de fondo azul verdoso */
-            color: white;    /* Color del texto */
-            border: none;    /* Sin borde */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #578e41;
+            color: white;
+            border: none;
             padding: 10px 20px;
             font-size: 16px;
-            border-radius: 5px; /* Bordes redondeados */
-            cursor: pointer; /* Cambia el cursor a tipo puntero */
+            border-radius: 5px;
+            cursor: pointer;
         }
         header {
-            background: #333;
-            color: #fff;
+            background: #578e41;
+            color: #ffffff;
             padding-top: 30px;
             min-height: 100px;
-            border-bottom: #0779e4 3px solid;
-            position: relative; /* Permite posicionar el logo absolutamente respecto a este bloque */
+            border-bottom: #a2bc3d 3px solid;
+            position: relative;
         }
         header a {
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
@@ -58,7 +59,7 @@
         .user-info {
             text-align: right;
             margin-top: 20px;
-            color: #FFFFFF;
+            color: #ffffff;
         }
         .products {
             display: flex;
@@ -78,13 +79,13 @@
             height: 200px;
             object-fit: cover;
         }
-        h2 {
-            font-size: 18px;
-            margin: 5px 0;
+        h1, h2 {
+            font-family: 'Poppins Bold', sans-serif;
         }
         p {
+            font-family: 'Poppins Regular', sans-serif;
             font-size: 16px;
-            color: #555;
+            color: #555555;
         }
         @media (max-width: 600px) {
             .product {
@@ -92,17 +93,16 @@
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--button class="fixed-button" onclick="location.href='{{ url('/checkout') }}'">Ir al Checkout</button>-->
-
     <header>
         <div class="container">
             <h1>Catálogo de Productos</h1>
             <img src="https://nikkenlatam.com/site/custom/img/general/logo-nikken.png" alt="Logo de Nikken" class="header-logo">
             <div class="user-info">
-                <p style="color:#FFFFFF";><b>Bienvenido {{$nombre_u}}</b></p>
-                <p style="color:#FFFFFF"><b>Este cupón se ha redimido {{$redimido}} veces.</b></p>
+                <p><b>Bienvenido {{$nombre_u}}</b></p>
+                <p><b>Este cupón se ha redimido {{$redimido}} veces.</b></p>
             </div>
         </div>
     </header>
@@ -125,7 +125,7 @@
                     </div>
                 @endforeach
             </div>
-            <button type="submit" class="fixed-button" style="padding: 10px 20px; font-size: 16px;">Ir al Checkout</button>
+            <button type="submit" class="fixed-button">Ir al Checkout</button>
         </form>
     </div>
 </body>

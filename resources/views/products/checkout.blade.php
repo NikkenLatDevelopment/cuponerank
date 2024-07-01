@@ -6,11 +6,12 @@
     <title>Checkout</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f9f9f9;
-            color: #333;
+            background: url('{{ asset('images/Fondo01.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
         }
         .container {
             width: 90%;
@@ -19,14 +20,14 @@
             max-width: 1200px;
         }
         header {
-            background: #343a40;
-            color: #fff;
+            background: #578e41;
+            color: #ffffff;
             padding: 10px 0;
             text-align: center;
             position: relative;
         }
         header a {
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 24px;
@@ -41,11 +42,11 @@
         .products-header h2 {
             font-size: 24px;
             margin: 0;
-            color: #007bff;
+            color: #578e41;
         }
         .products-header span {
             font-size: 18px;
-            color: #666;
+            color: #666666;
         }
         .products {
             display: grid;
@@ -72,20 +73,20 @@
         .product h2 {
             font-size: 20px;
             margin: 10px 0;
-            color: #007bff;
+            color: #578e41;
         }
         .product p {
             font-size: 14px;
-            color: #666;
+            color: #666666;
         }
         .product .quantity {
             font-size: 16px;
-            color: #333;
+            color: #333333;
             margin-top: 10px;
         }
         .product button {
-            background: #007bff;
-            color: #fff;
+            background: #578e41;
+            color: #ffffff;
             border: none;
             padding: 10px 15px;
             font-size: 14px;
@@ -94,13 +95,13 @@
             transition: background 0.3s ease;
         }
         .product button:hover {
-            background: #0056b3;
+            background: #4a7a36;
         }
         .checkout-button {
             display: block;
             width: 100%;
-            background: #28a745;
-            color: #fff;
+            background: #a2bc3d;
+            color: #ffffff;
             border: none;
             padding: 15px;
             font-size: 18px;
@@ -112,15 +113,16 @@
             margin-top: 20px;
         }
         .checkout-button:hover {
-            background: #218838;
+            background: #8fa431;
         }
         .no-products {
             text-align: center;
             font-size: 18px;
-            color: #666;
+            color: #666666;
             margin: 50px 0;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
