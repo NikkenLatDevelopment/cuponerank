@@ -14,6 +14,7 @@ class ProductController extends Controller
         $redimido = session('redimido');
         $tipo_u= session('tipo_u');
         $nombre_u= session('nombre_u');
+      //  dd($pais,$redimido, $tipo_u, $nombre_u);
 
         $products = DB::table('products as p')
     ->join('warehouses_products as wp', 'p.id', '=', 'wp.product_id')
@@ -90,6 +91,7 @@ class ProductController extends Controller
     }
          public function acceso($encodedEmail)
         {
+           // dd("entra");
             session()->flush();
             // Decodificar el correo electrónico
             $email = base64_decode($encodedEmail);
@@ -99,11 +101,12 @@ class ProductController extends Controller
             $cupon = DB::connection('SQL173')->table('LAT_NIKKEN_TV.dbo.ubiSorprende_Cupones')
                 ->where('email', $email)
                 ->first();
-
+                dd($cupon);
                 $pais = $cupon ? $cupon->pais : null;
                 $redimido = $cupon ? $cupon->redimido : null;
                 $tipo_u = $cupon ? $cupon->tipo_u : null;
                 $nombre_u = $cupon ? $cupon->nombre_u : null;
+               
              //   dd(['pais' => $pais, 'redimido' => $redimido]);
 
              session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
