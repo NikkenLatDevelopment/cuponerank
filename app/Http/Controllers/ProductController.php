@@ -123,7 +123,7 @@ class ProductController extends Controller
             else{
                 session(['pais' => $pais, 'redimido' => $redimido, 'tipo_u' => $tipo_u , 'nombre_u' => $nombre_u ]);
 
-                if ($redimido <= 3) {
+                if ($redimido < 3) {
                     
                     return redirect()->action([ProductController::class, 'index']);
     
